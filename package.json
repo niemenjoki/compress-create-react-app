@@ -1,14 +1,14 @@
 {
   "name": "compress-create-react-app",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "An NPM package for adding post build compression to a create-react-app builds",
   "main": "index.js",
   "scripts": {
     "": ""
   },
   "bin": {
-    "compress-create-react-app": "./index.js",
-    "compress-cra": "./index.js"
+    "compress-create-react-app": "index.js",
+    "compress-cra": "index.js"
   },
   "repository": {
     "type": "git",
