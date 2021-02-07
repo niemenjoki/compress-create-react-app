@@ -1,0 +1,90 @@
+[![npm version](https://img.shields.io/npm/v/compress-create-react-app)]
+[![npm monthly downloads](https://img.shields.io/npm/dm/react-app-rewired.svg)](https://www.npmjs.com/package/compress-create-react-app)
+
+# compress-create-react-app
+
+Make your apps smaller by adding post build compression to your create-react-app build without configuration.
+
+Compressed all html, css and javascript files in the build folder using brotli and gzip.
+
+## Usage
+
+##### 0) Create your app using create-react-app
+
+#### 1) Installing the package
+
+Install the package as a dev dependancy:
+
+```bash
+npm install compress-create-react-app --save-dev
+```
+
+#### 2) Using the package
+
+Edit your app's build script in `package.json`:
+
+```diff
+  "scripts": {
+    "start": "react-scripts start",
+-   "build": "react-scripts build",
++   "build": "react-scripts build && compress-cra",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  }
+```
+
+#### 3) Build your app just like you normally would
+
+```bash
+npm run build
+```
+
+#### 4) Make your server serve the compressed files instead of non-compressed file
+
+The way to set up your server to serve compressed files depends on server you use.
+
+As an example, here's I set up [my Express server](https://github.com/jnsjknn/nettikamu/blob/master/server/server.js) using [express-static-gzip](https://www.npmjs.com/package/express-static-gzip):
+
+```bash
+npm i express-static-gzip
+```
+
+```JavaScript
+const express = require('express');
+const path = require('path');
+const app = express();
+const PORT = process.env.PORT || 5000;
+const expressStaticGzip = require('express-static-gzip');
+
+app.use(express.json({ extended: false }));
+
+// API paths
+app.use('/api/auth', require('./routes/auth'));
+app.use('/api/posts', require('./routes/posts'));
+app.use('/api/users', require('./routes/users'));
+
+// Serve the build files
+const buildPath = path.join(__dirname, '..', 'build');
+app.use(
+  '/',
+  expressStaticGzip(buildPath, {
+    enableBrotli: true,
+    orderPreference: ['br', 'gz']
+  })
+);
+
+// Fallback to index.html when something that doesn't exist is requested
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'build', 'index.html'), err => {
+    if (err) {
+      res.status(500).send(err);
+    }
+  });
+});
+
+app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+```
+
+## License
+
+This app is licensed under the [MIT License](LICENSE.md)
