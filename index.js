@@ -13,7 +13,7 @@ const {
 
 (async () => {
   const algorithms = ['br', 'gz'];
-  const buildDir = path.join(__dirname, '/build');
+  const buildDir = path.join(path.dirname(require.main.filename), '/build');
   const filesToCompress = getFiles(buildDir);
   const initialBuildSize = getCombinedSize(filesToCompress);
 
