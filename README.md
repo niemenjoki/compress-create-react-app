@@ -1,5 +1,5 @@
-[![npm version](https://img.shields.io/npm/v/compress-create-react-app)]
-[![npm monthly downloads](https://img.shields.io/npm/dm/react-app-rewired.svg)](https://www.npmjs.com/package/compress-create-react-app)
+[![npm version](https://img.shields.io/npm/v/compress-create-react-app.svg)](https://www.npmjs.com/package/compress-create-react-app)
+[![npm monthly downloads](https://img.shields.io/npm/dm/compress-create-react-app.svg)](https://www.npmjs.com/package/compress-create-react-app)
 
 # compress-create-react-app
 
