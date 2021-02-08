@@ -1,6 +1,6 @@
 {
   "name": "compress-create-react-app",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "An NPM package for adding post build compression to a create-react-app builds",
   "main": "index.js",
   "scripts": {
