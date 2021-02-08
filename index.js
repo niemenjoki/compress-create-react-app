@@ -10,7 +10,7 @@ const {
   writeFile,
   startCompressingFile,
 } = require('./utils');
-const appRoot = require('app-root-path');
+const appRoot = require('app-root-path').path;
 (async () => {
   const algorithms = ['br', 'gz'];
   const buildDir = path.join(appRoot, '/build');
