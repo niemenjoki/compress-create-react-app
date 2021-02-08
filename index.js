@@ -10,10 +10,10 @@ const {
   writeFile,
   startCompressingFile,
 } = require('./utils');
-
+const appRoot = require('app-root-path');
 (async () => {
   const algorithms = ['br', 'gz'];
-  const buildDir = path.join(path.dirname(require.main.filename), '/build');
+  const buildDir = path.join(appRoot, '/build');
   const filesToCompress = getFiles(buildDir);
   const initialBuildSize = getCombinedSize(filesToCompress);
 

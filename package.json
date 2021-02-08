@@ -28,5 +28,8 @@
   "homepage": "https://github.com/jnsjknn/compress-create-react-app#readme",
   "devDependencies": {
     "prettier": "^2.2.1"
+  },
+  "dependencies": {
+    "app-root-path": "^3.0.0"
   }
 }
