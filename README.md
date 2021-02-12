@@ -5,7 +5,7 @@
 
 Make your apps smaller by adding post build compression to your create-react-app build without configuration.
 
-Compressed all html, css and javascript files in the build folder using brotli and gzip.
+Compresses all html, css and javascript files in the build folder using brotli and gzip algorithms.
 
 ## Usage
 
@@ -13,7 +13,7 @@ Compressed all html, css and javascript files in the build folder using brotli a
 
 #### 1) Installing the package
 
-Install the package as a dev dependancy:
+Install the package as a dev dependency:
 
 ```bash
 npm install compress-create-react-app --save-dev
@@ -39,11 +39,11 @@ Edit your app's build script in `package.json`:
 npm run build
 ```
 
-#### 4) Make your server serve the compressed files instead of non-compressed file
+#### 4) Make your server serve the compressed files
 
-The way to set up your server to serve compressed files depends on server you use.
+The way to set up your server to serve compressed files depends on the server you use.
 
-As an example, here's I set up [my Express server](https://github.com/jnsjknn/nettikamu/blob/master/server/server.js) using [express-static-gzip](https://www.npmjs.com/package/express-static-gzip):
+As an example, here's how I set up [my Express server](https://github.com/jnsjknn/nettikamu/blob/master/server/server.js) using [express-static-gzip](https://www.npmjs.com/package/express-static-gzip):
 
 ```bash
 npm i express-static-gzip
