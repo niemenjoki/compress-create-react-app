@@ -1,8 +1,6 @@
 [![npm version](https://img.shields.io/npm/v/compress-create-react-app.svg)](https://www.npmjs.com/package/compress-create-react-app)
 [![npm monthly downloads](https://img.shields.io/npm/dm/compress-create-react-app.svg)](https://www.npmjs.com/package/compress-create-react-app)
 
-**All feature requests are welcome
-
 Make your apps smaller by adding post build compression to your create-react-app build without configuration.
 
 Compresses all html, css and javascript files in the build folder using brotli and gzip algorithms.
