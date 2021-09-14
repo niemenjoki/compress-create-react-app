@@ -87,11 +87,11 @@ app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
 
 ## Donations
 
-Due to Finnish laws, donations are not allowed. If you want to support the development of this app, you can buy a written greeting from the creator of this project for a price of 5€ (US \$6):
+Due to Finnish laws, I can't accept direct donations. If you want to support the development of this package, you can buy a written greeting from me for 5€ (US \$6):
 
 1. Send the payment for the greeting via [PayPal](https://paypal.me/jnsjknn).
 2. Send the receipt to joonas@joonasjokinen.fi and you will receive your greeting within a week.
 
 ## License
 
-This app is licensed under the [MIT License](LICENSE.md)
+This app is licensed under the [MIT License](LICENSE.md).
