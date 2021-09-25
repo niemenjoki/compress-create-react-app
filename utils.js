@@ -2,6 +2,7 @@ const zlib = require('zlib');
 const fs = require('fs');
 const path = require('path');
 const util = require('util');
+const appRoot = require('app-root-path').path;
 
 const compressors = {
   br: {
@@ -84,6 +85,28 @@ const startCompressingFile = (file, algorithm) => {
 const readFile = util.promisify(fs.readFile);
 const writeFile = util.promisify(fs.writeFile);
 
+const getBuildDirectory = () => {
+  const customBuildPathIndex =
+    process.argv.indexOf('--build') !== -1
+      ? process.argv.indexOf('--build') + 1
+      : process.argv.indexOf('-b') + 1;
+
+  const relativeBuildPath =
+    customBuildPathIndex === 0 ? '/build' : process.argv[customBuildPathIndex];
+
+  const absoluteBuildPath = path.join(appRoot, relativeBuildPath);
+  if (!fs.existsSync(absoluteBuildPath)) {
+    console.error(
+      '\x1b[31m%s\x1b[0m',
+      `No directory found at: ${path.join(appRoot, buildPath)}.`
+    );
+    console.log('Please provide the relative path from the project root');
+    process.exit(1);
+  }
+
+  return absoluteBuildPath;
+};
+
 module.exports = {
   compressors,
   getFiles,
@@ -92,4 +115,5 @@ module.exports = {
   readFile,
   writeFile,
   startCompressingFile,
+  getBuildDirectory,
 };

@@ -1,19 +1,16 @@
 #!/usr/bin/env node
 
-const path = require('path');
 const {
   getFiles,
   getCombinedSize,
   formatSizeUnits,
-  compressors,
-  readFile,
-  writeFile,
   startCompressingFile,
+  getBuildDirectory,
 } = require('./utils');
-const appRoot = require('app-root-path').path;
+
 (async () => {
   const algorithms = ['br', 'gz'];
-  const buildDir = path.join(appRoot, '/build');
+  const buildDir = getBuildDirectory();
   const filesToCompress = getFiles(buildDir);
   const initialBuildSize = getCombinedSize(filesToCompress);
 
@@ -32,11 +29,14 @@ Compressing build files...
     const reductionPercentage = Math.round(
       (compressedBuildSize / initialBuildSize) * 100
     );
-    console.log(`Build compressed with ${algorithm}
+    console.log(
+      '\x1b[32m%s\x1b[0m',
+      `Build compressed with ${algorithm}
 The build size was reduced to ${reductionPercentage}% of its initial size.
 ${formatSizeUnits(compressedBuildSize)} instead of ${formatSizeUnits(
-      initialBuildSize
-    )}
-`);
+        initialBuildSize
+      )}
+`
+    );
   });
 })();
