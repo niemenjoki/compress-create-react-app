@@ -4,7 +4,7 @@
   "description": "An NPM package for adding post build compression to a create-react-app builds",
   "main": "index.js",
   "scripts": {
-    "": ""
+    "test": "jest"
   },
   "bin": {
     "compress-create-react-app": "index.js",
@@ -27,6 +27,7 @@
   },
   "homepage": "https://github.com/jnsjknn/compress-create-react-app#readme",
   "devDependencies": {
+    "jest": "^27.2.2",
     "prettier": "^2.2.1"
   },
   "dependencies": {
