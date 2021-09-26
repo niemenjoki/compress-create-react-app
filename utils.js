@@ -98,7 +98,7 @@ const getBuildDirectory = () => {
   if (!fs.existsSync(absoluteBuildPath)) {
     console.error(
       '\x1b[31m%s\x1b[0m',
-      `No directory found at: ${path.join(appRoot, buildPath)}.`
+      `No directory found at: ${path.join(appRoot, relativeBuildPath)}.`
     );
     console.log('Please provide the relative path from the project root');
     process.exit(1);
