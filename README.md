@@ -1,7 +1,7 @@
 [![npm version](https://img.shields.io/npm/v/compress-create-react-app.svg)](https://www.npmjs.com/package/compress-create-react-app)
 [![npm monthly downloads](https://img.shields.io/npm/dm/compress-create-react-app.svg)](https://www.npmjs.com/package/compress-create-react-app)
 
-Make your apps smaller by adding post build compression to your create-react-app build without configuration.
+Make your apps smaller by adding post build compression to your `create-react-app` build without configuration.
 
 Compresses all html, css and javascript files in the build folder using brotli and gzip algorithms.
 
@@ -11,7 +11,7 @@ Feel free to create an issue for any problems you've had or if you want to reque
 
 ##### 0) Create your app using create-react-app
 
-#### 1) Installing the package
+#### 1) Installation
 
 Install the package as a dev dependency:
 
@@ -19,7 +19,7 @@ Install the package as a dev dependency:
 npm install compress-create-react-app --save-dev
 ```
 
-#### 2) Using the package
+#### 2) Usage
 
 Edit your app's build script in `package.json`:
 
@@ -33,6 +33,18 @@ Edit your app's build script in `package.json`:
   }
 ```
 
+###### Custom build directory
+
+Since version `1.1.0`, you can optionally provide a path to your build directory by adding `-d` or `--directory` argument to the command in your `package.json`:
+
+```bash
+...
+"build": "react-scripts build && compress-cra -d /path/to/build",
+...
+```
+
+The default build path is `/build`. The provided custom path should be a relative path from your project's **root directory**.
+
 #### 3) Build your app just like you normally would
 
 ```bash
@@ -41,9 +53,9 @@ npm run build
 
 #### 4) Make your server serve the compressed files
 
-The way to set up your server to serve compressed files depends on the server you use.
+The way to set up your server highly depends on the server you use.
 
-As an example, here's how I set up [my Express server](https://github.com/jnsjknn/nettikamu/blob/master/server/server.js) using [express-static-gzip](https://www.npmjs.com/package/express-static-gzip):
+As an example, here's how I set up an `express` server using [express-static-gzip](https://www.npmjs.com/package/express-static-gzip):
 
 ```bash
 npm i express-static-gzip
@@ -84,6 +96,10 @@ app.get('/*', (req, res) => {
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
 ```
+
+## Contributing
+
+This is a small project that is currently maintained by one person. There are no strict contributing guidelines. If you're interested in contributing, see if there are any [issues](https://github.com/jnsjknn/compress-create-react-app/issues) you could help with or post a new one to suggest a feature.
 
 ## Donations
 

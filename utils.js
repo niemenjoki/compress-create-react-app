@@ -87,9 +87,9 @@ const writeFile = util.promisify(fs.writeFile);
 
 const getBuildDirectory = () => {
   const customBuildPathIndex =
-    process.argv.indexOf('--build') !== -1
-      ? process.argv.indexOf('--build') + 1
-      : process.argv.indexOf('-b') + 1;
+    process.argv.indexOf('--directory') !== -1
+      ? process.argv.indexOf('--directory') + 1
+      : process.argv.indexOf('-d') + 1;
 
   const relativeBuildPath =
     customBuildPathIndex === 0 ? '/build' : process.argv[customBuildPathIndex];
