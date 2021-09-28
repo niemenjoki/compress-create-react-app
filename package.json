@@ -4,8 +4,7 @@
   "description": "An NPM package for adding post build compression to a create-react-app builds",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
-    "prepare": "husky install"
+    "test": "jest"
   },
   "bin": {
     "compress-create-react-app": "index.js",
