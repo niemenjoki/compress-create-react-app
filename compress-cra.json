@@ -1,0 +1,6 @@
+{
+    "filetypes": [
+        ".html", ".js", ".css"
+    ],
+    "directory": "/build"
+}
