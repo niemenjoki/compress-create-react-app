@@ -26,8 +26,8 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
       - run: npm ci
-      - run: npm run build --if-present
       - run: npm test
+      - run: npm pack
       - run: npm publish
         env:
           # Use a token to publish to NPM. See below for how to set it up
