@@ -4,16 +4,16 @@ const {
   getCombinedSize,
   formatSizeUnits,
   startCompressingFile,
-  getBuildDirectory,
 } = require('./utils');
 
+const getBuildDirectory = require('./getBuildDirectory');
 const getFiles = require('./getFiles');
 const config = require('./getConfig');
 
 const compress = async () => {
   const algorithms = ['br', 'gz'];
   const buildDir = getBuildDirectory();
-  const filesToCompress = getFiles(buildDir,config.filetypes);
+  const filesToCompress = getFiles(buildDir, config.filetypes);
   const initialBuildSize = getCombinedSize(filesToCompress);
 
   console.log(`[compress-create-react-app]:
