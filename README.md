@@ -55,47 +55,8 @@ npm run build
 
 The way to set up your server highly depends on the server you use.
 
-As an example, here's how I set up an `express` server using [express-static-gzip](https://www.npmjs.com/package/express-static-gzip):
-
-```bash
-npm i express-static-gzip
-```
-
-```JavaScript
-const express = require('express');
-const path = require('path');
-const app = express();
-const PORT = process.env.PORT || 5000;
-const expressStaticGzip = require('express-static-gzip');
-
-app.use(express.json({ extended: false }));
-
-// API paths
-app.use('/api/auth', require('./routes/auth'));
-app.use('/api/posts', require('./routes/posts'));
-app.use('/api/users', require('./routes/users'));
-
-// Serve the build files
-const buildPath = path.join(__dirname, '..', 'build');
-app.use(
-  '/',
-  expressStaticGzip(buildPath, {
-    enableBrotli: true,
-    orderPreference: ['br', 'gz']
-  })
-);
-
-// Fallback to index.html when something that doesn't exist is requested
-app.get('/*', (req, res) => {
-  res.sendFile(path.join(__dirname, '..', 'build', 'index.html'), err => {
-    if (err) {
-      res.status(500).send(err);
-    }
-  });
-});
-
-app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
-```
+How to setup `express` server using [express-static-gzip](https://www.npmjs.com/package/express-static-gzip)
+How to setup `asp.net core` server using [CompressedStaticFiles](https://github.com/AnderssonPeter/CompressedStaticFiles)
 
 ## Contributing
 

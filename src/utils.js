@@ -1,8 +1,6 @@
 const zlib = require('zlib');
 const fs = require('fs');
-const path = require('path');
 const util = require('util');
-const appRoot = require('app-root-path').path;
 
 const compressors = {
   br: {
@@ -66,8 +64,6 @@ const startCompressingFile = (file, algorithm) => {
 
 const readFile = util.promisify(fs.readFile);
 const writeFile = util.promisify(fs.writeFile);
-
-
 
 module.exports = {
   compressors,
