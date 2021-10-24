@@ -16,7 +16,7 @@ Feel free to create an issue for any problems you've had or if you want to reque
 Install the package as a dev dependency:
 
 ```bash
-npm install compress-create-react-app --save-dev
+npm install @xzar90/compress-create-react-app --save-dev
 ```
 
 #### 2) Usage
