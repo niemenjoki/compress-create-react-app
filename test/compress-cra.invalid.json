@@ -1,0 +1,5 @@
+{
+  "algorithms": ["br", "gz2"],
+  "filetypes": [".html", ".js", ".css"],
+  "directory": "/test/testBuild"
+}

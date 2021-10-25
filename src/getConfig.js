@@ -1,14 +1,10 @@
 const fs = require('fs');
 const path = require('path');
 const appRoot = require('app-root-path').path;
-
-const supportedAlgorithms = ['br', 'gz'];
-
-const defaultConfig = {
-  filetypes: ['.js', '.html', '.css'],
-  directory: '/build',
-  algorithms: ['br', 'gz'],
-};
+const args = require('./args');
+const supportedAlgorithms = require('./compress').supportedAlgorithms;
+const defaultConfig = require('./defaultConfig');
+const configFilePath = args.config;
 
 const validateAlgorithms = (key, config) => {
   if (key === 'algorithms') {
@@ -35,11 +31,10 @@ const validateConfigs = (config) => {
 };
 
 const getConfig = () => {
-  const configFile = path.join(appRoot, 'compress-cra.json');
+  const configFile = path.join(appRoot, configFilePath);
   if (fs.existsSync(configFile)) {
     const strConfig = fs.readFileSync(configFile);
     const config = JSON.parse(strConfig);
-    console.debug(config);
     validateConfigs(config);
 
     return { ...defaultConfig, ...config };

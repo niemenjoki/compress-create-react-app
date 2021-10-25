@@ -66,4 +66,21 @@ describe('compress-cra package', () => {
     const { stdout, stderr } = await runCommand('node index.js');
     expect(stderr).not.toBeFalsy();
   });
+
+  it('should not compress files with -c --config arg and invalid config', async () => {
+    const { stdout, stderr } = await runCommand(
+      'node index.js -c /test/compress-cra.invalid.json'
+    );
+    expect(stderr).not.toBeFalsy();
+  });
+
+  it('should compress files with -c --config arg and valid config', async () => {
+    const { stdout, stderr } = await runCommand(
+      'node index.js -c /test/compress-cra.valid.json'
+    );
+
+    expect(stderr).toBeFalsy();
+    expect(compressedFilesExist()).toBe(true);
+    deleteCompressedFiles();
+  });
 });

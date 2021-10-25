@@ -1,7 +1,9 @@
-const { getCombinedSize, formatSizeUnits } = require('./utils');
+const getCombinedSize = require('./getCombinedSize');
+const formatSizeUnits = require('./formatSizeUnits');
 const getFiles = require('./getFiles');
 
-const printResult = (buildDir, algorithm, initialBuildSize) => {
+const printResult = (buildDir, algorithm, filesToCompress) => {
+  const initialBuildSize = getCombinedSize(filesToCompress);
   const compressedBuild = getFiles(buildDir, ['.' + algorithm]);
   const compressedBuildSize = getCombinedSize(compressedBuild);
   const reduction = initialBuildSize - compressedBuildSize;
@@ -20,4 +22,5 @@ const printResult = (buildDir, algorithm, initialBuildSize) => {
       ${formattedBuildSize} instead of ${formattedInitialBuildSize}`
   );
 };
-exports.printResult = printResult;
+
+module.exports = printResult;

@@ -20,34 +20,6 @@ const compressors = {
   },
 };
 
-
-const formatSizeUnits = (bytes) => {
-  if (bytes >= 1073741824) {
-    return (bytes / 1073741824).toFixed(2) + ' GB';
-  }
-  if (bytes >= 1048576) {
-    return (bytes / 1048576).toFixed(2) + ' MB';
-  }
-  if (bytes >= 1024) {
-    return (bytes / 1024).toFixed(2) + ' KB';
-  }
-  if (bytes > 1) {
-    return bytes + ' bytes';
-  }
-  if (bytes == 1) {
-    return bytes + ' byte';
-  }
-  return '0 bytes';
-};
-
-const getCombinedSize = (arrayOfFiles) => {
-  let totalSize = 0;
-  arrayOfFiles.forEach((filePath) => {
-    totalSize += fs.statSync(filePath).size;
-  });
-  return totalSize;
-};
-
 const startCompressingFile = (file, algorithm) => {
   return new Promise(async (resolve, reject) => {
     try {
@@ -62,14 +34,20 @@ const startCompressingFile = (file, algorithm) => {
   });
 };
 
+const startCompressingAll = async (filesToCompress, algorithm) => {
+  const compressionPromises = filesToCompress.map((file) =>
+    startCompressingFile(file, algorithm)
+  );
+
+  await Promise.all(compressionPromises);
+};
+
 const readFile = util.promisify(fs.readFile);
 const writeFile = util.promisify(fs.writeFile);
 
+const supportedAlgorithms = Object.keys(compressors);
+
 module.exports = {
-  compressors,
-  getCombinedSize,
-  formatSizeUnits,
-  readFile,
-  writeFile,
-  startCompressingFile,
+  startCompressingAll,
+  supportedAlgorithms,
 };
