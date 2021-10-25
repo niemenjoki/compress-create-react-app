@@ -1,6 +1,6 @@
 {
-  "name": "@xzar90/compress-create-react-app",
-  "version": "1.1.91",
+  "name": "compress-create-react-app",
+  "version": "1.2.0",
   "description": "An NPM package for adding post build compression to a create-react-app builds",
   "main": "index.js",
   "scripts": {
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/xzar90/compress-create-react-app.git"
+    "url": "git+https://github.com/jnsjknn/compress-create-react-app.git"
   },
   "keywords": [
     "create-react-app",
@@ -21,12 +21,12 @@
     "brotli",
     "gzip"
   ],
-  "author": "Joonas Jokinen <joonas@joonasjokinen.fi>, XzaR90",
+  "author": "Joonas Jokinen <joonas@joonasjokinen.fi>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/xzar90/compress-create-react-app/issues"
+    "url": "https://github.com/jnsjknn/compress-create-react-app/issues"
   },
-  "homepage": "https://github.com/xzar90/compress-create-react-app#readme",
+  "homepage": "https://github.com/jnsjknn/compress-create-react-app#readme",
   "devDependencies": {
     "jest": "^27.3.1",
     "prettier": "^2.4.1",

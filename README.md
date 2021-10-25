@@ -1,9 +1,5 @@
-[![npm version](https://img.shields.io/npm/v/@xzar90/compress-create-react-app.svg)](https://www.npmjs.com/package/@xzar90/compress-create-react-app)
-[![npm monthly downloads](https://img.shields.io/npm/dm/@xzar90/compress-create-react-app.svg)](https://www.npmjs.com/package/@xzar90/compress-create-react-app)
-[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=xzar90/compress-create-react-app)](https://dependabot.com)
-![workflow Publish](https://github.com/xzar90/compress-create-react-app/actions/workflows/publish.js.yml/badge.svg)
-![workflow njsscan-analysis](https://github.com/xzar90/compress-create-react-app/actions/workflows/njsscan-analysis.yml/badge.svg)
-![workflow codeql-analysis](https://github.com/xzar90/compress-create-react-app/actions/workflows/codeql-analysis.yml/badge.svg)
+[![npm version](https://img.shields.io/npm/v/compress-create-react-app.svg)](https://www.npmjs.com/package/compress-create-react-app)
+[![npm monthly downloads](https://img.shields.io/npm/dm/compress-create-react-app.svg)](https://www.npmjs.com/package/compress-create-react-app)
 
 Make your apps smaller by adding post build compression to your `create-react-app` build without configuration.
 
@@ -20,7 +16,7 @@ Feel free to create an issue for any problems you've had or if you want to reque
 Install the package as a dev dependency:
 
 ```bash
-npm install @xzar90/compress-create-react-app --save-dev
+npm install compress-create-react-app --save-dev
 ```
 
 #### 2) Usage
@@ -49,40 +45,6 @@ Since version `1.1.0`, you can optionally provide a path to your build directory
 
 The default build path is `/build`. The provided custom path should be a relative path from your project's **root directory**.
 
-###### Custom configuration
-
-Since version `1.1.7` place `compress-cra.json` in your app root directory.
-
-```json
-{
-  "algorithms": ["br", "gz"],
-  "filetypes": [
-    ".html",
-    ".js",
-    ".css",
-    ".svg",
-    ".png",
-    ".jpg",
-    ".mp3",
-    ".wav",
-    ".tff",
-    ".woff2",
-    ".map"
-  ],
-  "directory": "/build"
-}
-```
-
-Since version `1.1.8`, you can optionally provide a path to a config file by adding `-c` or `--config` argument to the command in your `package.json`:
-
-```bash
-...
-"build": "react-scripts build && compress-cra -c /path/to/configfile",
-...
-```
-
-The default is `compress-cra.json`.
-
 #### 3) Build your app just like you normally would
 
 ```bash
@@ -93,8 +55,47 @@ npm run build
 
 The way to set up your server highly depends on the server you use.
 
-- How to setup `express` server using [express-static-gzip](https://www.npmjs.com/package/express-static-gzip)
-- How to setup `asp.net core` server using [CompressedStaticFiles](https://github.com/AnderssonPeter/CompressedStaticFiles)
+As an example, here's how I set up an `express` server using [express-static-gzip](https://www.npmjs.com/package/express-static-gzip):
+
+```bash
+npm i express-static-gzip
+```
+
+```JavaScript
+const express = require('express');
+const path = require('path');
+const app = express();
+const PORT = process.env.PORT || 5000;
+const expressStaticGzip = require('express-static-gzip');
+
+app.use(express.json({ extended: false }));
+
+// API paths
+app.use('/api/auth', require('./routes/auth'));
+app.use('/api/posts', require('./routes/posts'));
+app.use('/api/users', require('./routes/users'));
+
+// Serve the build files
+const buildPath = path.join(__dirname, '..', 'build');
+app.use(
+  '/',
+  expressStaticGzip(buildPath, {
+    enableBrotli: true,
+    orderPreference: ['br', 'gz']
+  })
+);
+
+// Fallback to index.html when something that doesn't exist is requested
+app.get('/*', (req, res) => {
+  res.sendFile(path.join(__dirname, '..', 'build', 'index.html'), err => {
+    if (err) {
+      res.status(500).send(err);
+    }
+  });
+});
+
+app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+```
 
 ## Contributing
 
@@ -102,11 +103,11 @@ This is a small project that is currently maintained by one person. There are no
 
 ## Donations
 
-Due to Finnish laws, Joonas Jokinen can't accept direct donations. If you want to support the development of his package, you can buy a written greeting from Joonas Jokinen for 5€ (US \$6):
+Due to Finnish laws, I can't accept direct donations. If you want to support the development of this package, you can buy a written greeting from me for 5€ (US \$6):
 
 1. Send the payment for the greeting via [PayPal](https://paypal.me/jnsjknn).
 2. Send the receipt to joonas@joonasjokinen.fi and you will receive your greeting within a week.
 
 ## License
 
-This app is licensed under the [MIT License](https://github.com/XzaR90/compress-create-react-app/blob/master/LICENCE.md).
+This app is licensed under the [MIT License](LICENSE.md).
