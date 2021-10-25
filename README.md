@@ -1,5 +1,7 @@
 [![npm version](https://img.shields.io/npm/v/@xzar90/compress-create-react-app.svg)](https://www.npmjs.com/package/@xzar90/compress-create-react-app)
 [![npm monthly downloads](https://img.shields.io/npm/dm/@xzar90/compress-create-react-app.svg)](https://www.npmjs.com/package/@xzar90/compress-create-react-app)
+[![Dependabot Status](https://api.dependabot.com/badges/status?host=github&repo=xzar90/compress-create-react-app)](https://dependabot.com)
+![workflow Publish](https://github.com/xzar90/compress-create-react-app/actions/workflows/publish.js.yml/badge.svg)
 
 Make your apps smaller by adding post build compression to your `create-react-app` build without configuration.
 
