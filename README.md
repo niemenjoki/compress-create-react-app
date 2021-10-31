@@ -89,7 +89,8 @@ The way to set up your server highly depends on the server you use.
 
 Some useful tools to set up your server:
 
-- [express-static-gzip](https://www.npmjs.com/package/express-static-gzip) for `express` servers -[CompressedStaticFiles](https://github.com/AnderssonPeter/CompressedStaticFiles) for `asp.net core` servers
+- [express-static-gzip](https://www.npmjs.com/package/express-static-gzip) for `express` servers 
+- [CompressedStaticFiles](https://github.com/AnderssonPeter/CompressedStaticFiles) for `asp.net core` servers
 
 ## Contributing
 
