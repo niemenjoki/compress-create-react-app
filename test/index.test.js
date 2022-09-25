@@ -36,6 +36,23 @@ const compressedFilesExist = () => {
   return allExist;
 };
 
+const uncompressedFiles = [
+  '/test/testBuild/js/mock.js',
+  '/test/testBuild/css/mock.css',
+  '/test/testBuild/html/mock.html',
+];
+
+const uncompressedFilesExist = () => {
+  let allExist = true;
+  uncompressedFiles.forEach((filePath) => {
+    const absoluteFilePath = path.join(appRoot, filePath);
+    if (!fs.existsSync(absoluteFilePath)) {
+      allExist = false;
+    }
+  });
+  return allExist;
+};
+
 const deleteCompressedFiles = () => {
   compressedFiles.forEach((filePath) => {
     const absoluteFilePath = path.join(appRoot, filePath);
@@ -43,7 +60,15 @@ const deleteCompressedFiles = () => {
   });
 };
 
+const createMockFiles = () => {
+  uncompressedFiles.forEach((filePath) => {
+    const absoluteFilePath = path.join(appRoot, filePath);
+    fs.writeFileSync(absoluteFilePath, '');
+  });
+};
+
 describe('compress-cra package', () => {
+  createMockFiles();
   it('should create compressed files with --directory parameter', async () => {
     const { stdout, stderr } = await runCommand(
       'node index.js --directory /test/testBuild'
@@ -82,5 +107,25 @@ describe('compress-cra package', () => {
     expect(stderr).toBeFalsy();
     expect(compressedFilesExist()).toBe(true);
     deleteCompressedFiles();
+  });
+
+  it('should retain uncompressed files by default', async () => {
+    const { stdout, stderr } = await runCommand(
+      'node index.js -c /test/compress-cra.valid.json'
+    );
+    expect(stderr).toBeFalsy();
+    expect(compressedFilesExist()).toBe(true);
+    expect(uncompressedFilesExist()).toBe(true);
+    deleteCompressedFiles();
+  });
+
+  it('should delete uncompressed files when retainUncompressedFiles is set to false', async () => {
+    const { stdout, stderr } = await runCommand(
+      'node index.js -c /test/compress-cra.validDeleteUncompressed.json'
+    );
+
+    expect(uncompressedFilesExist()).toBe(false);
+    deleteCompressedFiles();
+    createMockFiles();
   });
 });

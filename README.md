@@ -35,7 +35,7 @@ Edit your app's build script in `package.json`:
 
 ###### Custom build directory
 
-Since version `1.1.0`, you can optionally provide a path to your build directory by adding `-d` or `--directory` argument to the command in your `package.json`:
+You can provide an optional path to your build directory by adding `-d` or `--directory` argument to the command in your `package.json`:
 
 ```bash
 ...
@@ -47,7 +47,7 @@ The default build path is `/build`. The provided custom path should be a relativ
 
 ###### Custom configuration
 
-Since version `1.2.0`, you can optionally create a configuration file `compress-cra.json`:
+You can create an optional configuration file `compress-cra.json`:
 
 ```json
 {
@@ -69,12 +69,34 @@ Since version `1.2.0`, you can optionally create a configuration file `compress-
 }
 ```
 
-By default, compress-cra looks for `compress-cra-json` in the project root but you may also provide a custom path to the config file by adding `-c` or `--config` argument to the command in your `package.json`:
+The default config values are as follows:
+
+```json
+{
+  "filetypes": [".js", ".html", ".css"],
+  "directory": "/build",
+  "algorithms": ["br", "gz"],
+  "retainUncompressedFiles": true
+}
+```
+
+By default, compress-cra looks for `compress-cra.json` in the project root but you may also provide a custom path to the config file by adding `-c` or `--config` argument to the command in your `package.json`:
 
 ```bash
 ...
 "build": "react-scripts build && compress-cra -c /path/to/configfile",
 ...
+```
+
+Compress-cra retains the original uncompressed files by default. If you want them to be deleted automatically, you can set `retainUncompressedFiles` to false in your `compress-cra.json` file:
+
+```json
+{
+  "filetypes": [".js", ".html", ".css"],
+  "directory": "/build",
+  "algorithms": ["br", "gz"],
+  "retainUncompressedFiles": false
+}
 ```
 
 #### 3) Build your app just like you normally would
@@ -89,7 +111,7 @@ The way to set up your server highly depends on the server you use.
 
 Some useful tools to set up your server:
 
-- [express-static-gzip](https://www.npmjs.com/package/express-static-gzip) for `express` servers 
+- [express-static-gzip](https://www.npmjs.com/package/express-static-gzip) for `express` servers
 - [CompressedStaticFiles](https://github.com/AnderssonPeter/CompressedStaticFiles) for `asp.net core` servers
 
 ## Contributing
@@ -98,7 +120,7 @@ This is a small project that is currently maintained by one person. There are no
 
 ## Donations
 
-Due to Finnish laws, I can't accept direct donations. If you want to support the development of this package, you can buy a written greeting from me for 5€ (US \$6):
+If you want to support the development of this package, you can buy a written greeting from me for 5€ (US \$6):
 
 1. Send the payment for the greeting via [PayPal](https://paypal.me/jnsjknn).
 2. Send the receipt to joonas@joonasjokinen.fi and you will receive your greeting within a week.

@@ -1,0 +1,6 @@
+{
+  "algorithms": ["br", "gz"],
+  "filetypes": [".html", ".js", ".css"],
+  "directory": "/test/testBuild",
+  "retainUncompressedFiles": false
+}
