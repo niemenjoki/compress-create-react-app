@@ -16,10 +16,12 @@ const compress = async () => {
 Compressing build files...
     `);
 
-  algorithms.forEach(async (algorithm) => {
-    await startCompressingAll(filesToCompress, algorithm);
-    printResult(buildDir, algorithm, filesToCompress);
-  });
+  await Promise.all(
+    algorithms.map(async (algorithm) => {
+      await startCompressingAll(filesToCompress, algorithm);
+      printResult(buildDir, algorithm, filesToCompress);
+    })
+  );
 
   if (!config.retainUncompressedFiles) {
     deleteUncompressedFiles(filesToCompress);
