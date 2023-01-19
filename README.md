@@ -120,10 +120,7 @@ This is a small project that is currently maintained by one person. There are no
 
 ## Donations
 
-If you want to support the development of this package, you can buy a written greeting from me for 5€ (US \$6):
-
-1. Send the payment for the greeting via [PayPal](https://paypal.me/jnsjknn).
-2. Send the receipt to joonas@joonasjokinen.fi and you will receive your greeting within a week.
+(https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/jnsjknn)
 
 ## License
 
