@@ -76,7 +76,8 @@ The default config values are as follows:
   "filetypes": [".js", ".html", ".css"],
   "directory": "/build",
   "algorithms": ["br", "gz"],
-  "retainUncompressedFiles": true
+  "retainUncompressedFiles": true,
+  "reduceMemoryUsage": false
 }
 ```
 
@@ -96,6 +97,17 @@ Compress-cra retains the original uncompressed files by default. If you want the
   "directory": "/build",
   "algorithms": ["br", "gz"],
   "retainUncompressedFiles": false
+}
+```
+
+Compress-cra compresses files asynchronously by default. This makes the compression faster but won't work with too many files or if your system doesn't have enough memory available. You can use synchronous compression by setting `asynchronousCompression` to false in your `compress-cra.json` file:
+
+```json
+{
+  "filetypes": [".js", ".html", ".css"],
+  "directory": "/build",
+  "algorithms": ["br", "gz"],
+  "asynchronousCompression": false
 }
 ```
 

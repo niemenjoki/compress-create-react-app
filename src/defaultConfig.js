@@ -3,4 +3,5 @@ module.exports = {
   directory: '/build',
   algorithms: ['br', 'gz'],
   retainUncompressedFiles: true,
+  asynchronousCompression: true,
 };

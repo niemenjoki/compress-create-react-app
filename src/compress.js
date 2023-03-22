@@ -5,6 +5,7 @@ const util = require('util');
 const compressors = {
   br: {
     func: util.promisify(zlib.brotliCompress),
+    funcSync: zlib.brotliCompressSync,
     options: {
       params: {
         [zlib.constants.BROTLI_PARAM_QUALITY]:
@@ -14,6 +15,7 @@ const compressors = {
   },
   gz: {
     func: util.promisify(zlib.gzip),
+    funcSync: zlib.gzipSync,
     options: {
       level: zlib.constants.Z_BEST_COMPRESSION,
     },
@@ -42,6 +44,15 @@ const startCompressingAll = async (filesToCompress, algorithm) => {
   await Promise.all(compressionPromises);
 };
 
+const compressAllSync = (filesToCompress, algorithm) => {
+  for (const file of filesToCompress) {
+    const buffer = fs.readFileSync(file);
+    const { funcSync, options } = compressors[algorithm];
+    const compressedBuffer = funcSync(buffer, options);
+    fs.writeFileSync(file + '.' + algorithm, compressedBuffer);
+  }
+};
+
 const readFile = util.promisify(fs.readFile);
 const writeFile = util.promisify(fs.writeFile);
 
@@ -50,4 +61,5 @@ const supportedAlgorithms = Object.keys(compressors);
 module.exports = {
   startCompressingAll,
   supportedAlgorithms,
+  compressAllSync,
 };
