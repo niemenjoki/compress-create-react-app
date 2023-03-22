@@ -19,7 +19,8 @@ const printResult = (buildDir, algorithm, filesToCompress) => {
     '\x1b[32m%s\x1b[0m',
     `Build compressed with ${algorithm}
       The build size was reduced to ${reductionPercentage}% of its initial size, ${formattedReductionSize} was removed.
-      ${formattedBuildSize} instead of ${formattedInitialBuildSize}`
+      ${formattedBuildSize} instead of ${formattedInitialBuildSize}
+      `
   );
 };
 
