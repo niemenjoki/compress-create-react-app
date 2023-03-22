@@ -77,7 +77,7 @@ The default config values are as follows:
   "directory": "/build",
   "algorithms": ["br", "gz"],
   "retainUncompressedFiles": true,
-  "reduceMemoryUsage": false
+  "asynchronousCompression": true
 }
 ```
 
