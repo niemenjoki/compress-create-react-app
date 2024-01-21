@@ -1,6 +1,6 @@
 # The MIT License (MIT)
 
-Copyright © `2021` `Joonas Jokinen`
+Copyright © `2021` `Joonas Niemenjoki`
 
 Permission is hereby granted, free of charge, to any person
 obtaining a copy of this software and associated documentation
