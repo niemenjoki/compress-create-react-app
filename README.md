@@ -136,4 +136,5 @@ This is a small project that is currently maintained by one person. There are no
 
 ## License
 
-This app is licensed under the [MIT License](LICENSE.md).
+This app is licensed under the [Creative Commons
+Attribution-NonCommercial-ShareAlike 4.0 International](LICENSE.md) license.
