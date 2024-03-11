@@ -132,7 +132,7 @@ This is a small project that is currently maintained by one person. There are no
 
 ## Buy Me A Coffee
 
-<a href="https://www.buymeacoffee.com/jnsjknn" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
+<a href="https://www.buymeacoffee.com/niemenjoki" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/default-orange.png" alt="Buy Me A Coffee" height="41" width="174"></a>
 
 ## License
 
