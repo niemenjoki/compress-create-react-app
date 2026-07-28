@@ -34,7 +34,7 @@ const compress = async () => {
   }
 
   if (!config.retainUncompressedFiles) {
-    deleteUncompressedFiles(filesToCompress);
+    deleteUncompressedFiles(filesToCompress, algorithms);
   }
 };
 

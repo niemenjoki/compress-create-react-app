@@ -22,18 +22,11 @@ const compressors = {
   },
 };
 
-const startCompressingFile = (file, algorithm) => {
-  return new Promise(async (resolve, reject) => {
-    try {
-      const buffer = await readFile(file);
-      const { func, options } = compressors[algorithm];
-      const compressedBuffer = await func(buffer, options);
-      await writeFile(file + '.' + algorithm, compressedBuffer);
-      return resolve();
-    } catch (err) {
-      reject(err);
-    }
-  });
+const startCompressingFile = async (file, algorithm) => {
+  const buffer = await readFile(file);
+  const { func, options } = compressors[algorithm];
+  const compressedBuffer = await func(buffer, options);
+  await writeFile(file + '.' + algorithm, compressedBuffer);
 };
 
 const startCompressingAll = async (filesToCompress, algorithm) => {

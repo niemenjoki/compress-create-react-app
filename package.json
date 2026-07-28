@@ -1,20 +1,23 @@
 {
   "name": "compress-create-react-app",
-  "version": "1.4.5",
-  "description": "An NPM package for adding post build compression to a create-react-app builds",
+  "version": "1.4.6",
+  "description": "Deprecated CLI for adding Brotli and gzip post-build compression",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
-    "prepare": "husky install",
-    "prettier": "prettier -c ./src/*.js"
+    "test": "node --test",
+    "prettier": "prettier --check .prettierrc index.js \"src/*.js\" \"test/*.js\" package.json compress-cra.json README.md SECURITY.md \".github/workflows/*.yml\""
   },
   "bin": {
     "compress-create-react-app": "index.js",
     "compress-cra": "index.js"
   },
+  "files": [
+    "index.js",
+    "src"
+  ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jnsjknn/compress-create-react-app.git"
+    "url": "git+https://github.com/niemenjoki/compress-create-react-app.git"
   },
   "keywords": [
     "create-react-app",
@@ -25,16 +28,14 @@
   "author": "Joonas Jokinen <joonas@joonasjokinen.fi>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jnsjknn/compress-create-react-app/issues"
+    "url": "https://github.com/niemenjoki/compress-create-react-app/issues"
   },
-  "homepage": "https://github.com/jnsjknn/compress-create-react-app#readme",
+  "homepage": "https://github.com/niemenjoki/compress-create-react-app#readme",
   "devDependencies": {
-    "husky": "^7.0.4",
-    "jest": "^27.5.1",
-    "prettier": "^2.7.1"
+    "prettier": "^3.9.0"
   },
   "dependencies": {
     "app-root-path": "^3.1.0",
-    "yargs": "^17.5.1"
+    "yargs": "^17.7.2"
   }
 }

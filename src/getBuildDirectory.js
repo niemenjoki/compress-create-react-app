@@ -4,6 +4,7 @@ const appRoot = require('app-root-path').path;
 const args = require('./args');
 const defaultConfig = require('./defaultConfig');
 const config = require('./getConfig');
+const validateDeletionDirectory = require('./validateDeletionDirectory');
 
 const getBuildDirectory = () => {
   const relativeBuildPath =
@@ -13,12 +14,18 @@ const getBuildDirectory = () => {
 
   const absoluteBuildPath = path.join(appRoot, relativeBuildPath);
   if (!fs.existsSync(absoluteBuildPath)) {
-    console.error(
-      '\x1b[31m%s\x1b[0m',
-      `No directory found at: ${path.join(appRoot, relativeBuildPath)}.`
+    throw new Error(
+      `No directory found at: ${path.join(appRoot, relativeBuildPath)}. ` +
+        'Please provide the relative path from the project root.'
     );
-    console.log('Please provide the relative path from the project root');
-    process.exit(1);
+  }
+
+  if (!fs.statSync(absoluteBuildPath).isDirectory()) {
+    throw new Error(`The build path is not a directory: ${absoluteBuildPath}.`);
+  }
+
+  if (!config.retainUncompressedFiles) {
+    validateDeletionDirectory(appRoot, absoluteBuildPath);
   }
 
   return absoluteBuildPath;

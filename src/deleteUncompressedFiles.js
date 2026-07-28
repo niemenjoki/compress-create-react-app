@@ -1,10 +1,22 @@
-const path = require('path');
 const fs = require('fs');
 
-const deleteUncompressedFiles = (filepaths) => {
+const deleteUncompressedFiles = (filepaths, algorithms) => {
   filepaths.forEach((filePath) => {
-    const absoluteFilePath = path.join(filePath);
-    fs.unlinkSync(absoluteFilePath);
+    algorithms.forEach((algorithm) => {
+      const compressedFilePath = `${filePath}.${algorithm}`;
+      if (
+        !fs.existsSync(compressedFilePath) ||
+        !fs.statSync(compressedFilePath).isFile()
+      ) {
+        throw new Error(
+          `Refusing to delete original files because '${compressedFilePath}' is missing.`
+        );
+      }
+    });
+  });
+
+  filepaths.forEach((filePath) => {
+    fs.unlinkSync(filePath);
   });
 };
 

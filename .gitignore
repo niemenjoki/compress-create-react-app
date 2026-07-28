@@ -121,3 +121,4 @@ dist
 **/*.tgz
 **/*.br
 **/*.gz
+test/.tmp-*
